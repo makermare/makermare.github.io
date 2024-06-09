@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<!-- saved from url=(0022)https://ardupilot.org/ -->
+<html lang="zh"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style>body {transition: opacity ease-in 0.2s; } 
+body[unresolved] {opacity: 0; display: block; overflow: hidden; position: relative; } 
+</style><script src="chrome-extension://jlpcnoohcpfgpbalhlggdhjocgnlgafn/assets/main-world.ts-4ed993c7.js" type="module"></script>
+    <!-- Required meta tags -->
+    
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
+
+    <title>ArduPilot 开源自动驾驶系统 中文镜像：适用于几乎所有能想象到的飞行器/地面车/潜水艇等。稳定可靠 开放源码</title>
+
+    <meta name="description" content="ArduPilot 是一款稳定可靠、值得信赖、用途广泛的开源自动驾驶系统，支持多种飞行器类型：多旋翼直升机、传统直升机、固定翼飞机、船只、潜水艇、漫游车等。已安装在全球超过 1,000,000 台机器平台上，并配备了先进的数据记录、分析和模拟工具。我们随时欢迎新的开发者加入！加入开发人员团队论坛是开始工作的最佳途径，该论坛对所有人开放，每天都有大量的开发信息。">
+    <meta name="author" content="ArduPilot中文镜像">
+
+    <!-- OG Meta Tags to improve the way the post looks when you share the page on LinkedIn, Facebook, Google+ -->
+    <meta property="og:site_name" content="ArduPilot.org">
+    <meta property="og:title" content="ArduPilot">
+    <meta property="og:description" content="ArduPilot is a trusted, versatile, and open source autopilot system supporting many vehicle types: multi-copters, traditional helicopters, fixed wing aircraft, boats, submarines, rovers and more. The source code is developed by a large community of professionals and enthusiasts. New developers are always welcome! The best way to start is by joining the Developer Team Forum, which is open to all and chock-full of daily development goodness.">
+    <!-- description shown in the actual shared post -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ardupilots.org">
+    <meta property="og:image" content="https://ardupilots.org/index_files/ArduPilot-Motto.png">
+
+    <link rel="canonical" href="https://ardupilots.org/">
+    <link rel="manifest" href="https://ardupilots.org/index_files/manifest.json">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://ardupilots.org/index_files/apple-icon.png">
+    <!-- Place favicon.ico in the root directory -->
+    <link rel="icon" href="https://ardupilots.org/index_files/icon.png">
+    <link rel="mask-icon" href="https://ardupilots.org/index_files/icon.png" color="#ffffff">
+
+    <meta name="theme-color" content="#ffffff">
+    <meta name="msapplication-TileColor" content="#ffffff">
+
+    <!-- CSS -->
+    <link href="./index_files/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./index_files/main.css">
+    <script src="./index_files/bootstrap.bundle.min.js"></script>
+	
+    <script>
+        function loadContent(elementId, file) {
+            fetch(file)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    return response.text();
+                })
+                .then(text => document.getElementById(elementId).innerHTML = text)
+                .catch(e => console.error('Error:', e));
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            loadContent("headerID", "includes/_topbar.html");
+        });
+    </script>
+
+	
+	<script> 
+	var _hmt = _hmt || []; 
+	(function() { 
+	  var hm = document.createElement("script"); 
+	  hm.src = "https://hm.baidu.com/hm.js?72639041b703d79a2dc4bd1cb07b0990"; 
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s); 
+	})(); 
+	(function(){ 
+		var bp = document.createElement('script'); 
+		var curProtocol = window.location.protocol.split(':')[0]; 
+		if (curProtocol === 'https') { 
+			bp.src = 'https://zz.bdstatic.com/linksubmit/push.js'; 
+		} 
+		else { 
+			bp.src = 'http://push.zhanzhang.baidu.com/push.js'; 
+		} 
+		var s = document.getElementsByTagName("script")[0]; 
+		s.parentNode.insertBefore(bp, s); 
+	})(); 
+	</script>
+</head>
+
+<body>
+
+<header>
+    <div id="headerID"><nav class="navbar navbar-expand-md navbar-dark bg-dark ">
+
+	<div class="container">
+
+		<a class="navbar-brand ml-auto mr-auto" href="/ardupilot/index.html">
+			<img src="./index_files/ArduPilot-Motto.png" alt="ArduPilot" title="ArduPilot" class="img-fluid" media="(max-width: 767.98px)">
+		</a>
+
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+			<ul class="navbar-nav mr-auto  ">
+
+				<li class="nav-item active">
+					<a class="nav-link" href="/ardupilot/index.html">HOME</a>
+				</li>
+
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="/ardupilot/index.html" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">关于Ardupilot</a>
+					<div class="dropdown-menu" aria-labelledby="dropdown01">
+						<a class="dropdown-item" href="/dev/docs/events.html">最近事件</a>
+						<a class="dropdown-item" href="/dev/docs/common-history-of-ardupilot.html">历史</a>
+						<a class="dropdown-item" href="/dev/docs/license-gplv3.html">许可证</a>
+						<a class="dropdown-item" href="/ardupilot/docs/common-partners.html">合作伙伴</a>
+						<!-- There is a partners.html waiting for be enhanced -->
+						<a class="dropdown-item" href="https://github.com/orgs/ArduPilot/projects/2">路线图</a>
+						<a class="dropdown-item" href="/dev/docs/common-training-centers.html">学校</a>
+						<a class="dropdown-item" href="/ardupilot/docs/common-team.html">团队</a>
+						<!-- There is a team.html waiting for be enhanced -->
+						<a class="dropdown-item" href="/dev/docs/common-team.html">顶级贡献者
+							Contributors</a>
+						<a class="dropdown-item" href="/dev/docs/job-openings.html">志愿者</a>
+					</div>
+				</li>
+
+				<li class="nav-item active">
+					<a class="nav-link" href="https://discuss.ardupilot.org/c/blog">博客 </a>
+				</li>
+
+				<li class="nav-item active">
+					<a class="nav-link text-nowrap" href="/copter/docs/common-use-cases-and-applications.html">使用案例</a>
+				</li>
+
+				<li class="nav-item active">
+					<a class="nav-link" href="/ardupilot">教程文档/入门</a>
+				</li>
+
+				<li class="nav-item active">
+					<a class="nav-link" href="/ardupilot/docs/common-stores.html">商店</a>
+				</li>
+
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="/ardupilot/index.html" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">社区</a>
+					<div class="dropdown-menu" aria-labelledby="dropdown02">
+						<a class="dropdown-item" href="/ardupilot/docs/common-commercial-support.html">商业支持
+							Support</a>
+						<a class="dropdown-item" href="/ardupilot/docs/common-contact-us.html">联系我们</a>
+						<a class="dropdown-item" href="/dev/docs/ardupilot-discord-server.html">开发人员聊天</a>
+						<a class="dropdown-item" href="https://discuss.ardupilot.org/">论坛讨论</a>
+						<a class="dropdown-item" href="https://www.facebook.com/groups/ArduPilot.org">Facebook</a>
+						<a class="dropdown-item" href="/dev/docs/gsoc.html">GSOC</a>
+						<a class="dropdown-item" href="https://twitter.com/hashtag/Ardupilot?src=hash">Twitter</a>
+						<a class="dropdown-item" href="https://www.youtube.com/channel/UCtqkaA8BWDpISGNAfivUSHw">YouTube</a>
+						<a class="dropdown-item" href="https://www.instagram.com/explore/tags/ardupilot/?hl=en">Instagram</a>
+					</div>
+				</li>
+
+			</ul>
+		</div>
+
+	</div>
+</nav>
+</div>
+</header>
+
+<main role="main" class="container">
+
+    <br>
+
+    <div class="contentSection">
+
+        <div class="contentSection">
+        <h1>什么是 ArduPilot？</h1>
+        <p class="text-justify lead">ArduPilot 是一款开源软件系统，经过10余年的迭代，拥有百万级的高质量代码，用于自动驾驶软件，稳定可靠、用途广泛，支持多种飞行器类型：多旋翼直升机、传统直升机、固定翼飞机、船只、潜水艇、漫游车等。源代码由一个由专业人士和爱好者组成的大型社区开发。我们随时欢迎新的开发者加入！加入开发人员团队论坛是开始工作的最佳途径，该论坛对所有人开放，每天都有大量的开发信息。</p>
+		
+		<p class="text-justify lead">APM（全称：ArduPilotMega2560）是在2007年由DIY无人机社区（DIY Drones）推出的飞控硬件，是当今最为成熟的开源硬件项目。APM飞控已经成为开源飞控成熟的标杆，可支持多旋翼、固定翼、直升机和无人驾驶车等无人设备。针对多旋翼，APM飞控支持各种四、六、八轴产品，并且连接外置GPS传感器以后能够增稳，并完成自主起降、自主航线飞行、回家、定高、定点等丰富的飞行模式。APM能够连接外置的超声波传感器和光流传感器，在室内实现定高和定点飞行。</p>
+		
+		<p class="text-justify lead">由于APM良好的可定制性，APM在全球航模爱好者范围内迅速传播开来。通过开源软件Mission Planner，开发者可以配置APM的设置，接受并显示传感器的数据。2013年由3D-Robot公司联合Ardupilot与苏黎世联邦理工大学PX4组于推出了PIXHawk飞控。该飞控是APM飞控的升级版本，同时拥有Ardupilot和PX4两套固件和相应的地面站软件。该飞控是当时全世界飞控产品中硬件规格最高的产品，也是当前爱好者手中最炙手可热的产品。PIXHawk拥有168MHz的运算频率，并采用了整合硬件浮点运算单片机作为主控芯片，内置两套陀螺和加速度计MEMS传感器，互为补充矫正，内置三轴磁场传感器并可以外接一个三轴磁场传感器，同时可外接一主一备两个GPS传感器，在故障时自动切换。</p>
+		
+		<p class="text-justify lead">迄今为止，ArduPilot开源软件、PIXHawk飞控系统已经反复迭代10余年，您可以随时唾手可得当时全世界飞控产品中硬件规格最高的产品，例如<a href="/copter/docs/common-PodmanH7.html">PodmanH7拥有480MHz的运算频率的硬件浮点运算高性能飞控</a>，该飞控的传感器硬件软件的紧密耦合可实现2000Hz的姿态解算和控制环，同时对多处硬件做出了改进，包括传感器恒温加热和温度补偿。通过开源地面软件QGroundControl和Mission Planner（或机载计算机的ROS/ROS2软件），开发者可以实时控制、配置、诊断Ardupilot，通过SD卡的日志并分析传感器的数据图表。</p>
+		
+		
+		
+		
+		</div>
+		<br><br>
+
+        <div class="contentSection">
+		<h1>ArduPilot能够控制几乎所有能想象到的飞行器/地面/潜水艇系统</h1>
+		
+		<p class="text-justify lead">ArduPilot 具有很强的自适应能力，并且可在飞行器平台上自动调参，用于调节飞行稳定性，很容易就适用于任何载具/飞行平台。它已安装在许多制造商（如我们合作伙伴的许多制造商）的载具上，并广泛应用于全球自主系统行业。它还被美国国家航空航天局（NASA）、英特尔（Intel）、Insitu/波音（Boeing）等大型机构和公司以及世界各地的无数高校用于测试和开发。</p>
+		
+		<p class="text-justify lead">ArduPilot 稳定可靠，已安装在全球超过 1,000,000 台机器平台上，并配备了先进的数据记录、分析和模拟工具，是经过严格测试和值得信赖的自动驾驶系统。开放源代码库意味着该系统发展迅速，始终处于技术发展的最前沿，而完善的发布流程则为最终用户提供了信心。由于许多外围设备供应商都在开发接口，用户可以从传感器、配套计算机和通信系统的广泛生态系统中获益。由于源代码是开放的，因此可以对其进行审核，以确保符合安全和保密要求。</p>
+		
+		<p class="text-justify lead">ArduPilot 能够创建和使用可信、自主的无人驾驶车辆系统，为所有人带来和平利益。作为一个开放源码项目，ArduPilot 根据庞大用户社区的快速反馈不断发展。开发团队与社区和商业合作伙伴合作，为 ArduPilot 增加有益于所有人的功能。尽管 ArduPilot 并不制造任何硬件，但 ArduPilot 固件可在各种不同的硬件上运行，以控制各种类型的无人驾驶飞行器。配合地面控制软件，运行 ArduPilot 的无人驾驶飞行器可以拥有先进的功能，包括与操作员进行实时通信。ArduPilot 拥有一个庞大的在线社区，致力于帮助用户解决各种问题。</p>
+
+		<p class="text-justify lead">ArduPilot 项目提供先进、功能齐全、可靠的开源自动驾驶软件系统。第一个 ArduPilot 开放代码库创建于 2009 年--从那时起，它一直由一支由专业工程师、学者、计算机科学家和我们全球社区的其他成员组成的团队开发。它能够控制几乎所有能想象到的飞行器系统：传统和 垂起固定翼 飞机、滑翔机、多旋翼飞行器、直升机、帆船、动力艇、潜水艇、地面飞行器甚至平衡机器人。随着新型平台使用案例的出现，支持的飞行器类型也在不断扩大。</p>
+
+
+		</div>
+		<br><br>
+
+		<div class="text-center">
+			<a class="reference external image-reference" href="./index_files/slides_01_Ardupilot42.jpg">
+			<img alt="" src="./index_files/slides_01_Ardupilot42.jpg">
+			</a>
+		</div>
+		<br><br>
+	
+        <div class="contentSection">
+            <h1>开发者社区</h1>
+            <p class="text-justify lead">
+                正在编写代码？您可以从我们的 <a href="/dev/index.html">开发人员指南</a> 并在 <a href="https://ardupilot.org/discord">我们的对话频道</a>
+            </p>
+        </div>
+        <br>
+		
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Discussion Forum</h3>
+                    </div>
+                    <div class="panel-body">
+                        Get help and interact with other ArduPilot users on <a href="https://discuss.ardupilot.org/">Discussion
+                        Forum</a> and <a href="https://discuss.ardupilot.org/c/blog">related blogs on ArduPilot.org!</a><br>
+                        <br>
+                    </div>
+                </div>
+            </div><!-- /.col-sm-4 -->
+
+            <div class="col-sm-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Facebook ArduPilot group</h3>
+                    </div>
+                    <div class="panel-body">
+                        <a href="https://www.facebook.com/groups/ArduPilot.org/">Facebook ArduPilot group</a> have
+                        several post
+                        with most recent community cases.
+                        <br>
+                    </div>
+                </div>
+            </div><!-- /.col-sm-4 -->
+
+            <div class="col-sm-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Discord</h3>
+                    </div>
+                    <div class="panel-body">
+                        Developing questions? Check our <a href="https://ardupilot.org/discord">discord channels</a> and
+                        exchange
+                        your coding questions with other developers.
+                        <br>
+                    </div>
+                </div>
+            </div><!-- /.col-sm-4 -->
+
+        </div>
+		
+		<div class="contentSection">
+		<h1>Community</h1>
+		<p class="text-justify lead">Community is what really sets ArduPilot apart from many other offerings in the
+            market. Here are some of the places you can find ArduPilot users and developers:</p>
+		</div>
+		<br><br><br>
+		
+    </div>
+	
+    <br>
+	<div class="text-center">
+        <a class="reference external image-reference" href="./index_files/home_ardupilot.jpg">
+	    <img alt="" src="./index_files/home_ardupilot.jpg">
+		</a>
+	</div>
+    <br><br><br>
+
+
+    <div class="contentSection">
+        <h1>Ardupilot生态系统：平台、硬件、软件、地面站</h1>
+    </div>
+    <br>
+
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h2 class="panel-title">无人驾驶车辆</h2>
+                </div>
+                <div class="panel-body text-justify">
+                    ArduPilot 可以控制多种类型的硬件，如多旋翼飞机、传统直升机、固定翼飞机、船只、潜水艇、漫游车等。 
+					<br><br><br>
+                </div>
+            </div>
+        </div><!-- /.col-sm-4 -->
+
+        <div class="col-sm-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h2 class="panel-title">硬件</h2>
+                </div>
+                <div class="panel-body text-justify">
+                    是外围传感器、控制器和输出设备，充当车辆的眼睛、耳朵、大脑和手臂。几乎任何移动设备都可以变成自动驾驶汽车，只需在其中集成一个小型硬件包即可。硬件包首先是一个控制器。利用传感器的输入，控制器能够向电调、伺服、万向节和其他外围设备发送输出。
+                    <br><br>
+                </div>
+            </div>
+        </div><!-- /.col-sm-4 -->
+
+        <div class="col-sm-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h2 class="panel-title">固件</h2>
+                </div>
+                <div class="panel-body text-justify">
+                    代码是否在控制器上运行。您可以选择与车辆和任务相匹配的固件：<a href="/copter/index.html">旋翼机</a>, <a href="/plane/index.html"> 固定翼</a>, <a href="/rover/index.html">地面车</a>, <a href="/copter/index.html">潜水艇</a>, or <a href="/antennatracker/index.html">天线追踪器</a>.
+					<br><br>
+                </div>
+            </div>
+        </div><!-- /.col-sm-4 -->
+
+        <div class="col-sm-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h2 class="panel-title">软件</h2>
+                </div>
+                <div class="panel-body text-justify">
+                    是您与控制器的接口。该软件也称为地面控制站（GCS），可在个人电脑或移动设备上运行。地面控制站允许用户设置、配置、测试和调整飞行器。高级软件包可实现自主任务规划、操作和任务后分析。
+					<br><br>
+                </div>
+            </div>
+        </div><!-- /.col-sm-4 -->
+
+        <div class="col-sm-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h2 class="panel-title">地面站</h2>
+                </div>
+                <div class="panel-body text-justify">
+                    无人机地面站或无人机地面控制站是陆基通信和控制系统，通常用于机组人员与无人机之间的直接驾驶和通信。这些地面控制系统通常既可驾驶飞行器，也可传输实时视频和数据流。
+					<br><br>
+                </div>
+            </div>
+        </div><!-- /.col-sm-4 -->
+
+        <div class="col-sm-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h2 class="panel-title">Mission Planner地面站</h2>
+                </div>
+                <div class="panel-body text-justify">
+                    是 ArduPilot 支持的全功能 GCS。它提供与硬件的点选式交互、自定义脚本和模拟功能。
+                    <br><br>
+                </div>
+            </div>
+        </div><!-- /.col-sm-4 -->
+
+    </div>
+
+    <br><br>
+
+    <div class="contentSection">
+        <h1>ArduPilot 文档</h1>
+        <p class="text-justify lead">ArduPilot 的中文镜像提供了大量文档。请参见顶部栏中的 <a href="/ardupilot/index.html">教程文档/入门</a> 链接查看。您需要选择平台：<a href="/copter/index.html">旋翼机</a>, <a href="/plane/index.html"> 固定翼</a>, <a href="/rover/index.html">地面车</a>, <a href="/copter/index.html">潜水艇</a>, or <a href="/antennatracker/index.html">天线追踪器</a>。以上的几种平台都有独立的入门教程，同时具有独立的（飞行）控制器的独立入门教程，然后按照教程的 "First Time Setup"（首次安装）逐步操作和安装地面站软件、连接设备和校准。</p>
+    </div>
+    <br><br>
+
+</main>
+
+
+<footer>
+    <div id="footerID">
+        <!-- Footer -->
+        <footer id="sticky-footer" class="py-4 bg-dark text-white-50">
+            <div class="container text-center">
+                © 2024 Copyright: © <a href="/ardupilot/index.html/"> ArduPilot.org</a>
+            </div>
+        </footer>
+        <!-- Footer -->
+    </div>
+</footer>
+
+
+<yd-mg-icon style="position: fixed; z-index: 2147483647;"><template shadowrootmode="open"><style>
+.item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.all {
+    direction: ltr;
+}
+.all > * {
+    direction: rtl;
+}
+.hidden {
+    display: none;
+    transition: width 0.3s linear;
+}
+.container:hover .hidden {
+    width: var(--131b0bc3);
+    height: var(--367772ca);
+    display: flex;
+}
+.container {
+    position: fixed;
+    top:var(--8b7ed71a);
+    right:var(--2c4e45ba);
+    width: var(--b2ad46e2);
+    height: var(--14b33b7e);
+    background-color: #fff;
+    border-radius: var(--e55f886a);
+    box-shadow: 0 0 10px #b3b5b8;
+    transition: width 0.3s linear;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.container:hover {
+    width: var(--301156d1);
+    border-radius: var(--e55f886a);
+    justify-content: space-around;
+}
+.icon {
+    width: var(--131b0bc3);
+    height: var(--367772ca);
+    cursor: pointer;
+    user-select: none;
+}
+.icon:hover {
+}
+.yd-translate-loader {
+    border: 2px solid #f3f3f3;
+    border-top: 2px solid #3498db;
+    border-radius: 50%;
+    height: var(--367772ca);
+    width:  var(--131b0bc3);
+    animation: spin 0.5s linear infinite;
+}
+@keyframes spin {
+0% { transform: rotate(0deg);
+}
+100% { transform: rotate(360deg);
+}
+}
+@keyframes append-animate {
+from {
+        opacity: 0;
+}
+to {
+        opacity: 1;
+}
+}
+.popup {
+  animation: popup 0.3s forwards;
+}
+@keyframes popup {
+0% {
+    opacity: 0;
+    transform: scale(0);
+}
+100% {
+    opacity: 1;
+    transform: scale(1);
+}
+}
+</style><div class="all" style="position: fixed; z-index: 2147483647; --131b0bc3: 22px; --367772ca: 22px; --8b7ed71a: 0px; --2c4e45ba: 0px; --b2ad46e2: 26px; --14b33b7e: 26px; --e55f886a: 13px; --301156d1: 78px;"><!----></div></template></yd-mg-icon><yd-mg-block-icon><template shadowrootmode="open"><style>@charset "UTF-8";
+.disabled-element[data-v-d3135d60] {
+  cursor: not-allowed;
+}
+.all[data-v-d3135d60] {
+  position: absolute;
+  z-index: 1;
+}
+.all .container[data-v-d3135d60] {
+  width: var(--5a3ced10);
+  height: var(--58dc89c6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.all .container .yd-line[data-v-d3135d60] {
+  display: block;
+  position: absolute;
+  height: var(--c03ec7f0);
+  top: var(--7808ebd8);
+  left: var(--891c21b0);
+}
+.all .container .yd-line .orignal[data-v-d3135d60] {
+  padding: 1px;
+  background-color: #E4E7F3;
+  height: var(--5934d8d6);
+}
+.all .container .yd-line .yd[data-v-d3135d60] {
+  padding: 1px;
+  background-color: #FF939E;
+  height: var(--4d327ada);
+}
+.all .container .yd-line .llm[data-v-d3135d60] {
+  padding: 1px;
+  background-color: #2485FF;
+  height: var(--18678bd3);
+}
+.all .container .tooltip-container[data-v-d3135d60] {
+  display: inline-block;
+  position: absolute;
+  top: var(--147b79a2);
+  left: var(--7afb4d26);
+}
+.all .container .tooltip-container .icon[data-v-d3135d60] {
+  width: var(--5a3ced10);
+  height: var(--58dc89c6);
+  background-image: var(--4a440a69);
+  border-radius: 5px;
+  cursor: pointer;
+}
+.all .container .tooltip-container .icon[data-v-d3135d60]::before {
+  content: var(--4809e853);
+  display: none;
+}
+.all .container .tooltip-container .icon[data-v-d3135d60]:hover {
+  box-shadow: 0px 4px 10px rgba(56, 112, 200, 0.16);
+  transition: width 0.3s linear;
+  background-image: var(--4809e853);
+  cursor: pointer;
+}
+.all .container .tooltip-container .llmIcon[data-v-d3135d60] {
+  width: var(--5a3ced10);
+  height: var(--58dc89c6);
+  background-image: var(--4a440a69);
+  border-radius: 5px;
+}
+.all .container .tooltip-container .llmIcon[data-v-d3135d60]:hover {
+  width: var(--5a3ced10);
+  height: 48px;
+  background-image: var(--11da4116);
+  border-radius: 5px;
+}
+.all .container .tooltip-container .tooltip[data-v-d3135d60] {
+  position: absolute;
+  top: var(--523390c5);
+  /* 放在元素的上方 */
+  left: var(--178a82d2);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  background-color: #F9FBFF;
+  padding: 8px;
+  width: 150px;
+  height: 40px;
+  border-radius: 8px;
+  box-sizing: border-box;
+  border: 1px solid rgba(216, 217, 219, 0.5);
+  box-shadow: 0px 1.2px 3.6px 0px rgba(0, 0, 0, 0.1), 0px 2px 20px 0px rgba(27, 19, 98, 0.08);
+  font-family: PingFang SC;
+  font-size: 16px;
+  font-weight: normal;
+  line-height: 150%;
+  text-align: center;
+  letter-spacing: 0em;
+  user-select: none;
+  color: #2A2B2E;
+}
+.all .container .tooltip-container .llmTooltip[data-v-d3135d60] {
+  position: absolute;
+  top: var(--523390c5);
+  /* 放在元素的上方 */
+  left: var(--178a82d2);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  background-color: #F9FBFF;
+  padding: 8px;
+  width: 200px;
+  height: 40px;
+  border-radius: 8px;
+  box-sizing: border-box;
+  border: 1px solid rgba(216, 217, 219, 0.5);
+  box-shadow: 0px 1.2px 3.6px 0px rgba(0, 0, 0, 0.1), 0px 2px 20px 0px rgba(27, 19, 98, 0.08);
+  font-family: PingFang SC;
+  font-size: 16px;
+  font-weight: normal;
+  line-height: 150%;
+  text-align: center;
+  letter-spacing: 0em;
+  user-select: none;
+  color: #2A2B2E;
+}
+.all .container .yd-translate-loader-block[data-v-d3135d60] {
+  position: absolute;
+  top: var(--147b79a2);
+  left: var(--7afb4d26);
+  width: var(--5a3ced10);
+  height: var(--5a3ced10);
+  background-image: var(--3fa19693);
+  /* 确保这里是正确的图片路径 */
+  background-repeat: no-repeat;
+  background-size: cover;
+  box-shadow: 0px 4px 10px rgba(56, 112, 200, 0.16);
+  overflow: hidden;
+  /* 保持子元素的圆角效果 */
+}
+.all .container .yd-translate-loader-block[data-v-d3135d60]::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border-radius: 5px;
+  border: 1px solid transparent;
+  background: linear-gradient(to left bottom, rgba(38, 132, 255, 0.6), rgba(120, 85, 250, 0.6));
+  -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+.all .container .tip[data-v-d3135d60] {
+  background-color: #F9FBFF;
+  padding: 8px;
+  border-radius: 8px;
+  height: 400px;
+  border: 1px solid #D8D9DB;
+}</style><div data-v-d3135d60="" class="all notranslate" style="--5a3ced10: 24px; --58dc89c6: 24px; --c03ec7f0: 0px; --7808ebd8: 0px; --891c21b0: 0px; --5934d8d6: 0px; --4d327ada: 0px; --18678bd3: 0px; --147b79a2: -16px; --7afb4d26: -44px; --4a440a69: url(chrome-extension://jlpcnoohcpfgpbalhlggdhjocgnlgafn/block.svg); --4809e853: url(chrome-extension://jlpcnoohcpfgpbalhlggdhjocgnlgafn/block-h.svg); --11da4116: url(chrome-extension://jlpcnoohcpfgpbalhlggdhjocgnlgafn/block-h-llm.svg); --523390c5: undefined; --178a82d2: undefined; --3fa19693: url(chrome-extension://jlpcnoohcpfgpbalhlggdhjocgnlgafn/block-l.gif);"><!----></div></template></yd-mg-block-icon><yd-image-ocr style="z-index: 2147483647;"><template shadowrootmode="open"><style>@charset "UTF-8";
+.modal-overlay[data-v-04ce0a75] {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.modal-content[data-v-04ce0a75] {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  display: flex;
+  gap: 20px;
+  width: 800px;
+  height: 500px;
+  flex-direction: column;
+  position: relative;
+}
+.modal-header[data-v-04ce0a75] {
+  display: flex;
+  justify-content: flex-end;
+  height: 24px;
+}
+.modal-body[data-v-04ce0a75] {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: row;
+}
+.modal-body .imageContainer[data-v-04ce0a75] {
+  flex: 2;
+  justify-content: center;
+}
+.modal-body .img[data-v-04ce0a75] {
+  position: relative;
+  background-size: contain;
+  background-position: center;
+  height: 600px;
+  background-repeat: no-repeat;
+}
+.modal-body .img .box[data-v-04ce0a75] {
+  position: absolute;
+  border: #333 3px solid;
+}
+.modal-body .text-content[data-v-04ce0a75] {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  /* 根据需要调整文本内容的样式 */
+}
+.modal-body .text-content .text[data-v-04ce0a75] {
+  overflow-y: auto;
+  height: 450px;
+}
+.modal-body .text-content .toolbar[data-v-04ce0a75] {
+  height: 36px;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.close-button[data-v-04ce0a75] {
+  background-color: transparent;
+  /* 透明背景 */
+  border: none;
+  /* 去除边框 */
+  cursor: pointer;
+  /* 鼠标悬停时显示指针 */
+  outline: none;
+  /* 去除焦点轮廓 */
+  position: absolute;
+  /* 绝对定位 */
+  top: 10px;
+  /* 距顶部的距离 */
+  right: 10px;
+  /* 距右边的距离 */
+  font-size: 24px;
+  /* 字体大小 */
+  line-height: 24px;
+  /* 行高，以确保垂直居中 */
+  color: #333;
+  /* 字体颜色 */
+  font-weight: bold;
+  /* 字体加粗 */
+}
+.close-button[data-v-04ce0a75]:hover {
+  color: #666;
+  /* 鼠标悬停时的颜色变化 */
+}
+.line[data-v-04ce0a75], .redline[data-v-04ce0a75] {
+  font-family: Arial, Helvetica, sans-serif;
+  /* 使用无衬线字体 */
+  font-size: 16px;
+  /* 设置合适的字体大小 */
+  line-height: 24px;
+  color: #333;
+  /* 文字颜色 */
+  padding: 3px 3px 3px 6px;
+  /* 内边距 */
+  margin-top: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, border-left-color 0.3s;
+  /* 背景色和边框颜色变化的过渡效果 */
+  border-left: 3px solid #ddd;
+  /* 设置灰色的左边框 */
+}
+.redline[data-v-04ce0a75] {
+  border-left-color: #e53935;
+  /* 鼠标悬停时边框颜色变为红色 */
+  background-color: #f5f5f5;
+}
+.button[data-v-04ce0a75] {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: #FB4A3E;
+  /* 一个明亮但不饱和的红色 */
+  color: white;
+  /* 文本颜色为白色 */
+  padding: 5px 10px;
+  /* 按钮内边距 */
+  border: none;
+  /* 无边框 */
+  border-radius: 5px;
+  /* 轻微的圆角 */
+  font-size: 10px;
+  text-transform: uppercase;
+  /* 文本大写 */
+  cursor: pointer;
+  /* 鼠标悬停时的指针样式 */
+  transition: background-color 0.3s;
+  /* 背景颜色变化的过渡效果 */
+}
+.button[data-v-04ce0a75]:hover {
+  background-color: #d32f2f;
+  /* 鼠标悬停时的背景颜色稍暗 */
+}
+.button[data-v-04ce0a75]:active {
+  background-color: #c62828;
+  /* 鼠标点击时的背景颜色更暗 */
+}
+.button[data-v-04ce0a75]:disabled {
+  background-color: #ef9a9a;
+  /* 禁用状态的按钮颜色更亮，更少饱和度 */
+  cursor: default;
+  /* 禁用状态的鼠标样式 */
+}
+.loading-indicator[data-v-04ce0a75] {
+  /* 添加你的样式，比如居中显示、动画等 */
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1.5em;
+  /* ...其他样式 */
+}
+.message[data-v-04ce0a75] {
+  position: absolute;
+  top: 50%;
+  /* 定位到父元素的中间 */
+  left: 50%;
+  /* 定位到父元素的中间 */
+  transform: translate(-50%, -50%);
+  /* 使用 transform 实现精确居中 */
+  padding: 10px;
+  background-color: white;
+  /* 设置背景颜色为白色 */
+  border: 1px solid blue;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  /* 添加阴影效果 */
+  text-align: center;
+  z-index: 100;
+  /* 确保提示信息在其他元素上方 */
+}
+.loader[data-v-04ce0a75] {
+  border: 5px solid #f3f3f3;
+  /* 浅灰色边框 */
+  border-top: 5px solid #3498db;
+  /* 蓝色边框 */
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin-04ce0a75 2s linear infinite;
+  margin-bottom: 20px;
+}
+@keyframes spin-04ce0a75 {
+0% {
+    transform: rotate(0deg);
+}
+100% {
+    transform: rotate(360deg);
+}
+}</style><!----></template></yd-image-ocr></body></html>
